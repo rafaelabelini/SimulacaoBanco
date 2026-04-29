@@ -196,8 +196,22 @@ public class ConsultarCartaoDebito extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonSairActionPerformed
 
     private void buttonCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuarioActionPerformed
-        // TODO add your handling code here:
+        try {
+            model.CartaoDebito cartaoDebito = controller.Gestao.consultarCartaoDebito(
+                    textFieldNome.getText(),
+                    textFieldCpf.getText(),
+                    new String(textFieldSenha.getPassword())
+            );
+
+            textFieldNome1.setText(formatarMoeda(cartaoDebito.consultarSaldo()));
+        } catch (IllegalArgumentException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_buttonCadastrarUsuarioActionPerformed
+
+    private String formatarMoeda(double valor) {
+        return String.format("R$ %.2f", valor);
+    }
 
     /**
      * @param args the command line arguments

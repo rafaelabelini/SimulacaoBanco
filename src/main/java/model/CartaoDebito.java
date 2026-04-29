@@ -10,7 +10,12 @@ public class CartaoDebito implements Cartao {
 
     @Override
     public void pagar(double valor) {
-
+        if (valor <= 0) {
+            return;
+        }
+        if (valor <= saldo) {
+            saldo -= valor;
+        }
     }
 
     @Override

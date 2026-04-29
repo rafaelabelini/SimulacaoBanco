@@ -3,6 +3,7 @@ package model;
 public class CartaoCredito implements Cartao {
     private Usuario usuario;
     private double limiteCredito;
+    private double limiteDisponivel;
     private double taxa = 0.15;
 
     public CartaoCredito(Usuario usuario, double taxa) {
@@ -14,6 +15,7 @@ public class CartaoCredito implements Cartao {
     private void calcularLimite(){
         double fator = usuario.getScore() / 1000.0;
         this.limiteCredito = usuario.getSalario() + (usuario.getSalario() * fator);
+        this.limiteDisponivel = this.limiteCredito;
     }
 
 
@@ -23,6 +25,11 @@ public class CartaoCredito implements Cartao {
 
     public void setLimiteCredito(double limiteCredito) {
         this.limiteCredito = limiteCredito;
+        this.limiteDisponivel = limiteCredito;
+    }
+
+    public double getLimiteDisponivel() {
+        return limiteDisponivel;
     }
 
     public double getTaxa() {
@@ -40,11 +47,16 @@ public class CartaoCredito implements Cartao {
 
     @Override
     public void pagar(double valor) {
-
+        if (valor <= 0) {
+            return;
+        }
+        if (valor <= limiteDisponivel) {
+            limiteDisponivel -= valor;
+        }
     }
 
     @Override
     public double consultarSaldo() {
-        return limiteCredito;
+        return limiteDisponivel;
     }
 }

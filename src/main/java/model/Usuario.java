@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Random;
-
 public class Usuario {
     private String nome;
     private String cpf;
@@ -9,11 +7,16 @@ public class Usuario {
     private double salario;
     private int score;
 
-    public Usuario(String nome, String cpf,  double salario, ServicoScore servicoScore) {
+    public Usuario(String nome, String cpf, String senha, double salario, ServicoScore servicoScore) {
         this.nome = nome;
         this.cpf = cpf;
+        this.senha = senha;
         this.salario = salario;
         this.score = servicoScore.calcularScore(this);
+    }
+
+    public Usuario(String nome, String cpf,  double salario, ServicoScore servicoScore) {
+        this(nome, cpf, "", salario, servicoScore);
     }
 
     public String getNome() {
@@ -30,6 +33,14 @@ public class Usuario {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public double getSalario() {

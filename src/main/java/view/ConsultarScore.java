@@ -191,7 +191,17 @@ public class ConsultarScore extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuarioActionPerformed
-        // TODO add your handling code here:
+        try {
+            int score = controller.Gestao.consultarScore(
+                    textFieldNome.getText(),
+                    textFieldCpf.getText(),
+                    new String(textFieldSenha.getPassword())
+            );
+
+            textFieldNome1.setText(String.valueOf(score));
+        } catch (IllegalArgumentException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_buttonCadastrarUsuarioActionPerformed
 
     private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
