@@ -14,7 +14,7 @@ Este é um projeto pessoal para estudo em java. Sendo uma simulação simples de
 ## Objetivos:
 
  - Estudo sobre padrão MVC;
- - Integrações com Banco de Dados em SQL;
+ - Integrações com Banco de Dados em SQL (A fazer);
  - Práticas em Interface Gráfica e funcionalidades.
 
 ## Autores
